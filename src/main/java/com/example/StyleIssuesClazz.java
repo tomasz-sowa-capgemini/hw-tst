@@ -1,30 +1,56 @@
 package com.example;
 
+/**
+ * Demonstrates basic Java coding standards and best practices.
+ */
 public class StyleIssuesClazz {
-    // Missing Javadoc comment
+
+    /**
+     * Returns a greeting message.
+     *
+     * @return a greeting string
+     */
     public static String greet() {
         return "Hello, World!";
     }
 
-    // Line too long - exceeds typical 80-120 character limit depending on CheckStyle configuration
+    /**
+     * Entry point of the application.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
-        System.out.println("This is a very long line that will definitely exceed the maximum line length configured in CheckStyle rules and should trigger a violation");
+        System.out.println(
+                "This is a very long line that will definitely exceed the maximum line length "
+                        + "configured in CheckStyle rules and should trigger a violation"
+        );
         System.out.println(greet());
     }
 
-    // Magic number without explanation
+    /**
+     * Performs a simple calculation.
+     *
+     * @return the result of multiplying the base value by the multiplier
+     */
     public static int calculate() {
-        return 42 * 100;
+        final int baseValue = 42;
+        final int multiplier = 100;
+        return baseValue * multiplier;
     }
 
-    // Unused variable
-    public static void unusedVariable() {
-        int x = 10;
+    /**
+     * Prints a simple message to the console.
+     */
+    public static void printMessage() {
         System.out.println("Hello");
     }
 
-    // Missing final modifier on parameter
-    public static void processData(String data) {
+    /**
+     * Processes and prints the provided data.
+     *
+     * @param data the data to process
+     */
+    public static void processData(final String data) {
         System.out.println(data);
     }
 }
