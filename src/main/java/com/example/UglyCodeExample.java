@@ -3,15 +3,12 @@ package com.example;
 import java.util.*;
 import java.io.*;
 
-import java.util.*;
-import java.io.*;
-
 public class    UglyCodeExample {
 
     public   static  void  main   (  String[]   args ) throws IOException {
         // This is a very important variable, trust me
         int   x =  10   ;   // x is a counter
-    int      y =     20; // Another counter variable
+        int      y =     20; // Another counter variable
         String   s = new   String("Hello, World!");
         System.out.println(s);
         // Let's do some arithmetic operations
@@ -21,15 +18,21 @@ public class    UglyCodeExample {
 
         List<String> items = new   ArrayList<>   ();
         items.add("Item1");
-            items.add(  "Item2"); // Added another item
-        items.add("Item3"); for(String item:items) { System.out.println(item.toLowerCase()); }
+        items.add(  "Item2"); // Added another item
+        items.add("Item3"); 
+        for(String item:items) { System.out.println(item.toLowerCase()); }
 
         // A loop that does something... maybe
         for(int i=0;i<5;i++) {
-            if (i == 2) {
-                System.out.println("Middle iteration: " + i); // middle
-            } else if (i == 4) { System.out.println("Last iteration "+i); }
-            else {System.out.println("Iteration number: "+i);
+            switch (i) {
+                case 2:
+                    System.out.println("Middle iteration: " + i); // middle
+                    break;
+                case 4:
+                    System.out.println("Last iteration "+i);
+                    break;
+                default:
+                    System.out.println("Iteration number: "+i);
             }
         }
         // This is a function call
@@ -44,11 +47,8 @@ public class    UglyCodeExample {
         // This method does something... maybe
         System.out.println("Inside uglyMethod with parameters: " + a + ", " + b + ", " + c);
         // Some complex logic that is hard to understand
-        int temp = a * b; if (temp > 100) { System.out.println("Temp is greater than 100: " + temp); } else { System.out.println("Temp is less than or equal to 100: " + temp); }
+        int temp = a * b; 
+        if (temp > 100) { System.out.println("Temp is greater than 100: " + temp); } else { System.out.println("Temp is less than or equal to 100: " + temp); }
     }
 
 }
-
-
-
-
