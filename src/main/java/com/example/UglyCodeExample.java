@@ -26,12 +26,15 @@ public class UglyCodeExample {
 
         // A loop that does something... maybe
         for (int i = 0; i < 5; i++) {
-            if (i == 2) {
-                System.out.println("Middle iteration: " + i); // middle
-            } else if (i == 4) {
-                System.out.println("Last iteration " + i);
-            } else {
-                System.out.println("Iteration number: " + i);
+            switch (i) {
+                case 2:
+                    System.out.println("Middle iteration: " + i); // middle
+                    break;
+                case 4:
+                    System.out.println("Last iteration " + i);
+                    break;
+                default:
+                    System.out.println("Iteration number: " + i);
             }
         }
         // This is a function call
@@ -40,7 +43,7 @@ public class UglyCodeExample {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // Reader
         System.out.print("Enter something: ");
         String line = br.readLine();
-        if (line != null && line.length() > 0) {
+        if (line != null && !line.isEmpty()) {
             System.out.println("You entered: " + line);
         } else {
             System.out.println("You entered nothing.");
