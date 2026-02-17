@@ -1,29 +1,32 @@
 package com.example;
 
-import java.util.*;
-import java.io.*; // multiple imports on same line (bad)
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.io.File;
 
 /**
  * Terrible example class full of conventions violations.
  */
 public class DemoManager {
-    public int x = 5;
-    public static String gLOBAL_name = "X";
-    private ArrayList list = new ArrayList(); // raw type (bad)
+
+    private int x = 5;
+    private static final String GLOBAL_NAME = "X";
+    private final List<Object> list = new ArrayList<>();
     public static final int VALUE = 1;
-    public static int counter = 0; // inconsistent spacing
+    private static int counter = 0;
 
     // weird indentation and comment style
     // this should NOT be here
 
     public DemoManager() {
         // empty constructor ... maybe?
-        int unusedLocal = 123; // unused var
     }
 
-    public void DoWork(int A, int b) {
+    public void DoWork(int a, int b) {
         // inconsistent naming, spacing, nested blocks
-        if (A > 10) {
+        if (a > 10) {
             System.out.println("A big");
             if (b < 5) {
                 System.out.println("b small");
@@ -36,8 +39,10 @@ public class DemoManager {
     }
 
     public void addThing(Object o) {
-        list.add(o); // using raw list, also no null check
-        counter++;
+        if (o != null) {
+            list.add(o);
+            counter++;
+        }
     }
 
     public void longUglyMethod() {
@@ -55,36 +60,42 @@ public class DemoManager {
         }
 
         // lots of repeated code, magic numbers
-        int zz = 0;
-        while (zz < 7) {
-            if (zz == 3) {
-                System.out.println("three");
-            } else if (zz == 4) {
-                System.out.println("four");
-            } else {
-                System.out.println("other");
+        for (int zz = 0; zz < 7; zz++) {
+            switch (zz) {
+                case 3:
+                    System.out.println("three");
+                    break;
+                case 4:
+                    System.out.println("four");
+                    break;
+                default:
+                    System.out.println("other");
+                    break;
             }
-            zz++;
         }
 
         try {
-            File f = new File("something.txt");
-            if (f.exists())
+            File file = new File("something.txt");
+            if (file.exists()) {
                 System.out.println("exists");
+            }
         } catch (Exception ex) {
-            // ignored
+            System.err.println("Error checking file existence: " + ex.getMessage());
         }
     }
 
     public String messySpacing(String q) {
         // pointless string ops, no null guard
+        if (q == null) {
+            return "";
+        }
         String r = q.trim();
         r = r.replace("a", "A");
         return r;
     }
 
-    public List getUnsortedList() {
-        ArrayList data = new ArrayList();
+    public List<Integer> getUnsortedList() {
+        List<Integer> data = new ArrayList<>();
         data.add(5);
         data.add(2);
         data.add(9);
@@ -93,17 +104,16 @@ public class DemoManager {
     }
 
     public void SortAndPrint() { // bad capitalization
-        List l = getUnsortedList();
-        Collections.sort(l); // raw list, no generics
-        for (Object o : l) {
+        List<Integer> l = getUnsortedList();
+        Collections.sort(l);
+        for (Integer o : l) {
             System.out.println(o);
         }
     }
 
     // extremely long pointless method to inflate line count
     public void overlyComplexMethod() {
-        int a = 0;
-        while (a < 20) {
+        for (int a = 0; a < 20; a++) {
             if (a % 3 == 0) {
                 System.out.println("div3: " + a);
             } else if (a % 4 == 0) {
@@ -111,7 +121,6 @@ public class DemoManager {
             } else if (a % 5 == 0) {
                 System.out.println("div5: " + a);
             }
-            a++;
         }
 
         for (int i = 0; i < 15; i++) {
@@ -127,11 +136,12 @@ public class DemoManager {
                     break;
                 default:
                     System.out.println("other");
+                    break;
             }
         }
 
         // giant unused list
-        List stuff = new ArrayList();
+        List<String> stuff = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             stuff.add("item-" + i);
         }
@@ -142,8 +152,8 @@ public class DemoManager {
         // TODO: fix EVERYTHING
         // FIXME: but not today
 
-        Random R = new Random();
-        int v = R.nextInt(100);
+        Random random = new Random();
+        int v = random.nextInt(100);
         if (v > 50) {
             System.out.println("big");
         } else {
@@ -152,7 +162,7 @@ public class DemoManager {
     }
 
     // Strange placement
-    public static void Helper(){
-    System.out.println("helper");
-       }
+    public static void Helper() {
+        System.out.println("helper");
+    }
 }

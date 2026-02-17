@@ -5,21 +5,18 @@ import java.io.*;
 
 public class UglyCodeExample {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // This is a very important variable, trust me
         int x = 10; // x is a counter
         int y = 20; // Another counter variable
-        String s = new String("Hello, World!");
+        String s = "Hello, World!";
         System.out.println(s);
         // Let's do some arithmetic operations
         // No, really, this is crucial logic
         int result = x + y * 2 - 1;
         System.out.println("Result is: " + result);
 
-        List<String> items = new ArrayList<>();
-        items.add("Item1");
-        items.add("Item2"); // Added another item
-        items.add("Item3");
+        List<String> items = Arrays.asList("Item1", "Item2", "Item3");
         for (String item : items) {
             System.out.println(item.toLowerCase());
         }
@@ -37,13 +34,17 @@ public class UglyCodeExample {
         // This is a function call
         uglyMethod(x, y, "test"); // Call the very useful method below
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // Reader
-        System.out.print("Enter something: ");
-        String line = br.readLine();
-        if (line != null && line.length() > 0) {
-            System.out.println("You entered: " + line);
-        } else {
-            System.out.println("You entered nothing.");
+        // SECURITY-SENSITIVE: Reading user input from console
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) { // Reader
+            System.out.print("Enter something: ");
+            String line = br.readLine();
+            if (line != null && !line.isEmpty()) {
+                System.out.println("You entered: " + line);
+            } else {
+                System.out.println("You entered nothing.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading input: " + e.getMessage());
         }
     }
 
